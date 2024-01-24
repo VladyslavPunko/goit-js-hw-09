@@ -65,3 +65,27 @@ const images = [
 ];
 
 const gallery = document.querySelector('.gallery');
+
+function listTemplate(image) {
+  return `<li class="gallery-item">
+  <a class="gallery-link" href="${image.original}">
+  <img
+      class="gallery-image"
+      src="${image.preview}"
+      data-source="${image.original}"
+      alt="${image.description}"
+  />
+  </a>
+</li>`;
+}
+
+function addListTemplate(images) {
+  return images.map(listTemplate).join('');
+}
+
+function render() {
+  const murkkup = addListTemplate(images);
+  gallery.innerHTML = murkkup;
+}
+
+render();
