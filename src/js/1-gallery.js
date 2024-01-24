@@ -93,7 +93,9 @@ function render() {
 
 render();
 
-const Lightbox = new SimpleLightbox('.gallery a', {
-  captionDelay: 250,
-  captionsData: 'alt',
+document.addEventListener('DOMContentLoaded', function () {
+  const lightbox = new SimpleLightbox('.gallery a', {
+    captionDelay: 250,
+    captionsData: 'alt',
+  });
 });
