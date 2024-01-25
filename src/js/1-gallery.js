@@ -75,7 +75,6 @@ function listTemplate(image) {
   <img
       class="gallery-image"
       src="${image.preview}"
-      data-source="${image.original}"
       alt="${image.description}"
   />
   </a>
@@ -87,8 +86,8 @@ function addListTemplate(images) {
 }
 
 function render() {
-  const murkkup = addListTemplate(images);
-  gallery.innerHTML = murkkup;
+  const murkup = addListTemplate(images);
+  gallery.innerHTML = murkup;
 }
 
 render();
