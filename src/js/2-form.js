@@ -1,4 +1,4 @@
-const kejStorage = 'feedback-form-state';
+const keyStorage = 'feedback-form-state';
 
 const form = document.querySelector('.feedback-form');
 const textarea = form.querySelector('textarea');
@@ -20,31 +20,28 @@ function saveToLs(kej, value) {
 }
 
 form.addEventListener('input', () => {
-  const suerEmail = form.elements.email.value;
-  const suerMessage = form.elements.message.value;
+  const userEmail = form.elements.email.value.trim();
+  const userMessage = form.elements.message.value.trim();
 
-  //   console.log(suerEmail, suerMessage);
   const obj = {
-    email: suerEmail,
-    message: suerMessage,
+    email: userEmail,
+    message: userMessage,
   };
 
-  //   console.log(obj);
-
-  saveToLs(kejStorage, obj);
+  saveToLs(keyStorage, obj);
 });
 
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  const data = loadFromLs(kejStorage) || {};
+  const data = loadFromLs(keyStorage) || {};
 
-  localStorage.removeItem(kejStorage);
+  localStorage.removeItem(keyStorage);
   form.reset();
 });
 
 function reloadMessage() {
-  const data = loadFromLs(kejStorage) || {};
+  const data = loadFromLs(keyStorage) || {};
 
   form.elements.email.value = data.email || '';
   form.elements.message.value = data.message || '';
