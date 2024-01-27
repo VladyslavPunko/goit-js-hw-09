@@ -1,10 +1,9 @@
 const keyStorage = 'feedback-form-state';
 
 const form = document.querySelector('.feedback-form');
-const textarea = form.querySelector('textarea');
 
-function loadFromLs(kej) {
-  const data = localStorage.getItem(kej);
+function loadFromLs(key) {
+  const data = localStorage.getItem(key);
 
   try {
     const result = JSON.parse(data);
@@ -14,9 +13,9 @@ function loadFromLs(kej) {
   }
 }
 
-function saveToLs(kej, value) {
+function saveToLs(key, value) {
   const jsonData = JSON.stringify(value);
-  localStorage.setItem(kej, jsonData);
+  localStorage.setItem(key, jsonData);
 }
 
 form.addEventListener('input', () => {
@@ -34,9 +33,23 @@ form.addEventListener('input', () => {
 form.addEventListener('submit', e => {
   e.preventDefault();
 
+  const userEmail = form.elements.email.value.trim();
+  const userMessage = form.elements.message.value.trim();
+
+  if (!userEmail || !userMessage) {
+    alert('Будь ласка, заповніть усі поля форми.');
+    return;
+  }
+
+  console.log({
+    email: userEmail,
+    message: userMessage,
+  });
+
   const data = loadFromLs(keyStorage) || {};
 
   localStorage.removeItem(keyStorage);
+
   form.reset();
 });
 
